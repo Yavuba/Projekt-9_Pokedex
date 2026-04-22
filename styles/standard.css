@@ -1,0 +1,40 @@
+/* importing fonts */
+@import url(./fonts.css);
+
+/* Main style */
+
+/* to fill in white space after clipping footer */
+html {
+    background-color: green;
+  }
+ 
+ /* for all elements */
+ * {
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    /* outline: 1px solid red; */
+ }
+ 
+ /* set sticky footer to the bottom, main part centered and vertically stacked */
+ body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0 auto;
+    font-family: "Palanquin", sans-serif;
+    scroll-behavior: smooth;
+ }
+ 
+ /* flex: in combination with flex-box of body, stretches the content to full height, setting max-width for main part of body, centered with help of margin */
+ main {
+    background-color: green;
+    flex: 1;
+ }
+ 
+ /* class to set status "hidden" */
+.hidden {
+   display: none;
+}
