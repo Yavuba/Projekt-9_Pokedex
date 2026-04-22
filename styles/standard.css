@@ -1,6 +1,17 @@
 /* importing fonts */
 @import url(./fonts.css);
 
+/* style section for variables */
+:root {
+
+/* img */
+--width-height-pokemon-img: 160px;
+
+/* padding, gaps */
+--gap-between-gallery: 24px;
+
+}
+
 /* Main style */
 
 /* to fill in white space after clipping footer */

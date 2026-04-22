@@ -56,11 +56,14 @@ function renderPokemonList(result) {
 
 // get all type-information for pokemon //
 function getPokemonTypes(pokemon) {
-  const types = [];
-
+  let text = "";
   for (let index = 0; index < pokemon.types.length; index++) {
-      types.push(pokemon.types[index].type.name);
+      text += "<li>" + pokemon.types[index].type.name + "</li>";
   }
-  return types;
+  return text;
 }
 
+// get all pokemon types of poke-api for defining classes//
+function getAllPokemonTypesfromApi () {
+  
+}

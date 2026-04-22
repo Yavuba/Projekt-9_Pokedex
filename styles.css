@@ -40,3 +40,53 @@ main {
     background-size: 100% 100%;
     object-fit: contain;
 }
+.content-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-between-gallery);
+    flex-wrap: wrap;
+    padding: 0 20px 0 20px;
+ }
+.pokemon-img {
+    width: var(--width-height-pokemon-img);
+    display: flex;
+    justify-content: center;
+}
+.id {
+    color: white;
+    text-align: end;
+    padding-right: 20px;
+}
+.name {
+    font-size: 24px;;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.type {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    text-transform: capitalize;
+}
+.section-pokemon {
+    border-style: solid;
+    color: white;
+    border-radius: 20px;
+    background-color: blue;
+}
+ul {
+    display: block;
+    list-style-type: none;
+    margin-top: 0em;
+    margin-bottom: 0 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0px;
+  }
+  li {
+    border-style: solid;
+    border-radius: 10px;
+  }
