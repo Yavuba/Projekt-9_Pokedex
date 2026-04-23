@@ -1,5 +1,6 @@
 // variables //
 let pokeapiArray = [];
+let pokeTypesArray = [];
 
 // init function for calling api-data //
 async function init() {
@@ -65,5 +66,20 @@ function getPokemonTypes(pokemon) {
 
 // get all pokemon types of poke-api for defining classes//
 function getAllPokemonTypesfromApi () {
-  
+  const url = "https://pokeapi.co/api/v2/type/";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    result.results.forEach(pokemon => {
+    pokeTypesArray.push(pokemon.name);
+    });
+
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 }
