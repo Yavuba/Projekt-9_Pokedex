@@ -5,7 +5,7 @@
 :root {
 
 /* img */
---width-height-pokemon-img: 160px;
+--width-height-pokemon-img: 120px;
 
 /* padding, gaps */
 --gap-between-gallery: 24px;
@@ -16,7 +16,7 @@
 
 /* to fill in white space after clipping footer */
 html {
-    background-color: green;
+    background-color: white;
   }
  
  /* for all elements */
@@ -41,7 +41,7 @@ html {
  
  /* flex: in combination with flex-box of body, stretches the content to full height, setting max-width for main part of body, centered with help of margin */
  main {
-    background-color: green;
+    background-color: white;
     flex: 1;
  }
  

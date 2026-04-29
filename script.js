@@ -1,10 +1,31 @@
 // variables //
 let pokeapiArray = [];
+let pokeTypesArray = [];
 
 // init function for calling api-data //
 async function init() {
+    await getAllPokemonTypesfromApi();  
     await getUrlData();
     await getPokemonMainData();
+}
+
+// get all pokemon types of poke-api for defining classes//
+async function getAllPokemonTypesfromApi () {
+  const url = "https://pokeapi.co/api/v2/type/";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    result.results.forEach(pokemon => {
+    pokeTypesArray.push(pokemon.name);
+    });
+
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 // get url-data for first 20 pokemon //
@@ -58,12 +79,8 @@ function renderPokemonList(result) {
 function getPokemonTypes(pokemon) {
   let text = "";
   for (let index = 0; index < pokemon.types.length; index++) {
-      text += "<li>" + pokemon.types[index].type.name + "</li>";
+      text += `<li id="type-${pokemon.id}-${index}" class="${pokemon.types[index].type.name}">${pokemon.types[index].type.name}</li>`;
   }
   return text;
 }
 
-// get all pokemon types of poke-api for defining classes//
-function getAllPokemonTypesfromApi () {
-  
-}
