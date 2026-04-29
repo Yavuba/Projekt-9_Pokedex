@@ -1,7 +1,7 @@
 // creating list of pokemons in main //
 function getPokemonListTemplate(result) {
     return `
-            <button id="pokemon-${result.id}" class="${result.types[0].type.name} section-pokemon" onclick="openModal">
+            <button id="pokemon-${result.id}" class="${result.types[0].type.name} section-pokemon" onclick="openModal(${result.id})">
                 <div id="card-layout-${result.id}" class="layout-card">
                     <figure id="figure-${result.id}">
                         <img id="img-${result.id}" class="pokemon-img" src="${result.sprites.other["official-artwork"].front_default}" alt="pokemon-img">

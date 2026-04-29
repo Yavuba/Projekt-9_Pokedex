@@ -1,6 +1,10 @@
 // variables //
 let pokeapiArray = [];
 let pokeTypesArray = [];
+let currentIndex = 0;
+let modal = document.getElementById("myModal");
+let modalImg = document.getElementById("img");
+let captionText = document.getElementById("caption");
 
 // init function for calling api-data //
 async function init() {
@@ -84,3 +88,51 @@ function getPokemonTypes(pokemon) {
   return text;
 }
 
+// Modal functions //
+// defining current index i with clicked modal // 
+function openModal(i) {
+  currentIndex = i;
+  getModalByIndex(currentIndex);
+}
+
+// get modal information with current index //
+function getModalByIndex(index) {
+  modal.showModal(index);
+  modalImg.src = `./img/gallery/monkeys/${images[index]}`;
+  modalImg.alt = `Monkey image ${index + 1}`;
+  captionText.innerHTML = images[index].split('.').slice(0, -1).join('.');
+  photoNr(index);
+  getFavoriteIcon(index);
+}
+
+// change modal-window, prev or next (1 or -1) //
+function renderFiltered(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) {
+      currentIndex = images.length - 1;
+  }
+
+  if (currentIndex >= images.length) {
+      currentIndex = 0;
+  }
+  getModalByIndex(currentIndex);
+}
+
+// closing modal //
+function closeModal() {
+  modal.close();
+}
+
+// moving to previous or next gallery-pictures with arrow-keys + activate/deactivate favorite//
+function modalKeys(event) {
+  if (event.key === "ArrowLeft") {
+      event.preventDefault();     
+      renderFiltered(-1);
+      return;                        
+  }
+  if (event.key === "ArrowRight") {
+      event.preventDefault();
+      renderFiltered(1);
+      return;
+  }
+}

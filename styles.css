@@ -80,6 +80,24 @@ main {
     width: 150px;
     height: 200px;
     border: 0.5px solid black;
+    overflow: hidden;
+    transition: 
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* Hover effects for container */
+.section-pokemon img {
+    transition: transform 0.4s ease;
+}
+.section-pokemon:hover {
+    transform: scale(1.1) translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(255, 255, 255, 0.25),
+        0 0 40px rgba(255, 255, 255, 0.15);
 }
 ul {
     display: block;
