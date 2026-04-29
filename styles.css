@@ -1,7 +1,7 @@
 /* Header */
 header {
     height: 70px;
-    background-color: rgb(243,207,93);
+    background-color: var(--header-footer-background-color);
     padding: 0 20px 0 20px;
     display: flex;
     justify-content: space-between;
@@ -28,14 +28,14 @@ input {
 /* Footer */
 footer {
     height: 70px;
-    background-color: rgb(243,207,93);
+    background-color: var(--header-footer-background-color);
     padding: 0 20px 0 20px;
 }
 
 /* Main */
 main {
     padding: 20px 0 30px 0;
-    background-color: rgb(115,206,165);
+    background-color: var(--main-background-color);
 }
 .content-row {
     display: flex;
@@ -86,19 +86,6 @@ main {
         box-shadow 0.3s ease,
         transform 0.3s ease;
 }
-
-/* Hover effects for container */
-.section-pokemon img {
-    transition: transform 0.4s ease;
-}
-.section-pokemon:hover {
-    transform: scale(1.1) translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow:
-        0 0 10px rgba(255, 255, 255, 0.4),
-        0 0 20px rgba(255, 255, 255, 0.25),
-        0 0 40px rgba(255, 255, 255, 0.15);
-}
 ul {
     display: block;
     list-style-type: none;
@@ -116,8 +103,20 @@ ul {
     box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.31);
   }
 
-  /* pokemon types classification */
+/* Hover effects for container */
+.section-pokemon img {
+    transition: transform 0.4s ease;
+}
+.section-pokemon:hover {
+    transform: scale(1.1) translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(255, 255, 255, 0.25),
+        0 0 40px rgba(255, 255, 255, 0.15);
+}
 
+/* pokemon types classification */
 .normal {
     background-color: #A8A77A;
 }
@@ -178,3 +177,93 @@ ul {
 .unknown {
     background-color: #F85888;
 }
+/* WCAG */
+
+/* Focus */
+button:focus-visible,
+.close-icon:focus-visible,
+.fav-icon:focus-visible {
+   outline: 3px solid var(--border-color-gallery-hover);
+   outline-offset: 4px;
+}
+/* Modal */
+dialog::backdrop {
+    background-color: rgba(0,0,0,0.4);
+}
+.modal {
+    width: 688px;
+    height: 670px;
+    background-color: var(--main-background-color);
+    border-radius: 40px;
+    position: fixed;                       
+    top: 50%;                              
+    left: 50%;                            
+    transform: translate(-50%, -50%);     
+    z-index: 1000;                       
+}
+  /* modal content (gallery image) */
+.modal-content {
+    display: block;                           
+    width: var(--width-photo-overlay-img);
+    height: var(--height-photo-overlay-img);
+    object-fit: cover;      
+    padding: 42px 64px 0 64px;
+}
+.header-modal {
+    display: flex;
+    justify-content: space-between;
+    padding: 78px 61px 0 61px;
+    height: 335px;
+}
+ /* caption of modal image (image alt-text) */
+ .title-modal {
+    color: var(--font-color-photo-name);
+    font-size: var(--font-size-photo-name);
+  }
+ 
+  /* the close button */
+  .close-icon {
+    width: var(--width-height-close-icon);
+    height: var(--width-height-close-icon);
+    background-image: url("./assets/img/icon/close-icon/Property\ 1=Default.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 1/1;
+ }
+ .close-icon:hover {
+    background-color: rgba(255, 120, 120, 0.4);
+    border-radius: 40px;
+ }
+ .buttons-modal {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 42px;
+    padding-bottom: 38px;
+ }
+ button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+ }
+ dialog {
+    border: none;
+    padding: 0;
+ }
+ .left, .right {
+    background-image: url("./assets/img/icon/btn/Property\ 1=Default.svg");
+    width: var(--width-height-btn-arrow);
+    height: var(--width-height-btn-arrow);
+ }
+ .left {
+    transform: rotate(180deg);
+ }
+ .right:hover, .left:hover {
+    background-image: url("./assets/img/icon/btn/Property\ 2=Hover.svg");
+ }
+ .index-line {
+    color: var(--font-color-overlay-photo-nr);
+    font-size: var(--font-size-overlay-photo-nr);
+ }

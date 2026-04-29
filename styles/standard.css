@@ -4,11 +4,31 @@
 /* style section for variables */
 :root {
 
-/* img */
+/* background color */
+--header-footer-background-color: rgb(243,207,93);
+--main-background-color: rgb(115,206,165);
+
+/* font color */
+--font-color-photo-name: rgba(255, 255, 255, 1);
+
+/* font size */
+--font-size-photo-name: 24px;
+
+/* width, height of img, icons */
 --width-height-pokemon-img: 120px;
+--width-photo-overlay-img: 60px;
+--height-photo-overlay-img: 60px;
+--width-height-close-icon: 35px;
+--width-height-btn-arrow: 60px;
+
+--maxWidth: 1440px;
 
 /* padding, gaps */
 --gap-between-gallery: 24px;
+
+/* border or hover color*/
+--border-color-gallery-default: rgba(18, 70, 88, 1);
+--border-color-gallery-hover: rgba(107, 193, 225, 1);
 
 }
 
