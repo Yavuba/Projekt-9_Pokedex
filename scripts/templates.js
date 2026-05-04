@@ -14,4 +14,31 @@ function getPokemonListTemplate(result) {
             `
 }
 
+// rendering modal-window for each pokemon //
+function openModal(id) {
+    return `
+            <dialog id="myModal-${id}" class="modal" tabindex="0" aria-labelledby="caption" onclick="closeModal()" onkeydown="modalKeys(event)">
+                <section id="header-modal-${id}" class="header-modal" onclick="event.stopPropagation()"> 
+                    <button id="close-button-icon-${id}" class="close-icon" aria-label="closing dialog" onclick="closeModal()"></button>
+                    <h2 id="caption-pokemon-${id}" class="title-modal"></h2>
+                    <span id="modal-id-${id}" class="id"></span>
+                    <div id="type-modal-${id}" class="type"></div>
+                </section>
+                <img id="modal-img-${id}" class="modal-pokemon-img" onclick="event.stopPropagation()">
+                <section id="modal-content-${id}" class="content-modal" onclick="event.stopPropagation()">
+                    <div id="pokemon-modal-menu-${id}" class="pokemon-menu">
+                        <Button id="button-about-${id}">About</Button>
+                        <Button id="button-stats-${id}">Stats</Button>
+                        <Button id="button-moves-${id}">Moves</Button>
+                        <Button id="button-evo-${id}">Evo Chain</Button>
+                    </div>
+                    <div id="menu-content-${id}" class="pokemon-data"></div>
+                    <div id="change-pokemon-${id}"
+                        <button id="prev-${id}" class="left" aria-label="go to previous gallery picture" onclick="renderFiltered(-1)"></button> 
+                        <button id="next-${id}" class="right" aria-label="go to next gallery picture" onclick="renderFiltered(1)"></button>
+                    </div>
+                </section>
+            </dialog>
+            `
+}
 

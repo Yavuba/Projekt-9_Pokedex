@@ -203,17 +203,13 @@ dialog::backdrop {
 }
   /* modal content (gallery image) */
 .modal-content {
-    display: block;                           
-    width: var(--width-photo-overlay-img);
-    height: var(--height-photo-overlay-img);
-    object-fit: cover;      
-    padding: 42px 64px 0 64px;
+    
 }
 .header-modal {
     display: flex;
     justify-content: space-between;
     padding: 78px 61px 0 61px;
-    height: 335px;
+    height: 50px;
 }
  /* caption of modal image (image alt-text) */
  .title-modal {

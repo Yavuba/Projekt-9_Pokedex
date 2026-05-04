@@ -22,21 +22,6 @@
     </header>
     <main>
         <article id="contentRow" class="content-row"></article> 
-            <dialog id="myModal" class="modal" tabindex="0" aria-labelledby="caption" onclick="closeModal()" onkeydown="modalKeys(event)"> 
-                <header id="headline" class="header-modal" onclick="event.stopPropagation()"> 
-                    <h2 id="caption" class="title-modal"></h2>
-                    <button id="close-button-icon" class="close-icon" aria-label="closing dialog" onclick="closeModal()"></button>
-                </header>
-                <img id="img" class="modal-content" onclick="event.stopPropagation()">
-                <section id="buttons" class="buttons-modal" onclick="event.stopPropagation()">
-                    <button id="prev" class="left" aria-label="go to previous gallery picture" onclick="renderFiltered(-1)"></button>
-                    <div id="index" class="index-line">
-                        <span id="photo-nr"></span><span id="array-length"></span>
-                    </div>  
-                    <button id="next" class="right" aria-label="go to next gallery picture" onclick="renderFiltered(1)"></button>
-                    <div id="placeholder-fav-icon" aria-label="activate or deactivate favorite picture"></div>
-                </section>
-            </dialog>
     </main>
     <footer>
 
