@@ -399,3 +399,7 @@ button {
 }
 
 /* Pokemon Data  - EVO CHAIN */
+.class-evo {
+    text-transform: capitalize;
+    font-weight: bold;
+}
