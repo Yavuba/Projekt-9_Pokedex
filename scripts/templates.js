@@ -143,8 +143,10 @@ function getMovesTemplate(result) {
 // rendering template for "Evo Chain" Data //
 function getEvoTemplate(result, evo) {
     return `
-            <div>${getEvoChain(evo)}</div>
-
-
+            <div id="evo-chain-${result.id}">
+                ${renderEvolutionChain(evo.chain).map(name => `
+                    <div class="class-evo">${name}</div>
+                `).join("")}
+            </div>
             `
 }

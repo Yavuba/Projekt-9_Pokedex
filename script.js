@@ -273,18 +273,15 @@ function getPercBst(total) {
   return percent;
 }
 
-// functions for formatting/getting pokemon data - EVO CHAIN //
+// functions for getting pokemon data - EVO CHAIN //
+function renderEvolutionChain(chain, container = []) {
+  if (!chain) return container;
 
-function getEvoChain(evo) {
-  let evolutions = [];
+  container.push(chain.species.name);
 
-  
+  for (const evolution of chain.evolves_to) {
+    renderEvolutionChain(evolution, container);
+  }
 
+  return container;
 }
-
-pokeEvoCache[1].chain.species.name;  
-pokeEvoCache[1].chain.evolves_to[0].species.name;
-pokeEvoCache[1].chain.evolves_to[0].evolves_to[0].species.name;
-
-
-
