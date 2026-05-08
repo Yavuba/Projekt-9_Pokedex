@@ -13,27 +13,34 @@
                 0 0 30px rgba(255, 255, 255, 0.2);
 
 /* font size */
---font-size-pokemon-name: 16px;
---font-size-modal-name: 32px;
+--font-size-container: 11px;
 --font-size-id: 12px;
+--font-size-pokemon-name: 16px;
 --font-size-modal-id: 24px;
+--font-size-logo-text: 24px;
+--font-size-modal-name: 32px;
 
 /* width, height of img, icons, container */
---width-height-pokemon-img: 120px;
---width-height-modal-img: 180px;
 --width-height-close-icon: 35px;
 --width-height-btn-arrow: 40px;
+--width-height-logo-img: 60px;
+--height-header-footer: 70px;
+--width-height-pokemon-img: 120px;
+--width-height-modal-img: 180px;
+--height-table-stats-bar: 220px;
 --height-header-modal: 300px;
 --height-content-modal: 327px;
-
 --maxWidth: 1440px;
 
 /* padding, gaps */
---gap-between-gallery: 24px;
+--gap-5: 5px;
+--gap-8: 8px;
+--gap-10: 10px;
+--gap-20: 20px;
+--gap-24: 24px;
 
 /* border or hover color*/
---border-color-gallery-default: rgba(18, 70, 88, 1);
---border-color-gallery-hover: rgba(107, 193, 225, 1);
+--border-color-gallery-hover: rgba(18, 70, 88, 1);
 
 }
 
@@ -42,19 +49,19 @@
 /* to fill in white space after clipping footer */
 html {
     background-color: white;
-  }
+}
  
- /* for all elements */
- * {
+/* for all elements */
+* {
     box-sizing: border-box;
     margin: 0;
     list-style: none;
     text-decoration: none;
     /* outline: 1px solid red; */
- }
+}
  
- /* set sticky footer to the bottom, main part centered and vertically stacked */
- body {
+/* set sticky footer to the bottom, main part centered and vertically stacked */
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,15 +69,15 @@ html {
     margin: 0 auto;
     font-family: "Palanquin", sans-serif;
     scroll-behavior: smooth;
- }
+}
  
- /* flex: in combination with flex-box of body, stretches the content to full height, setting max-width for main part of body, centered with help of margin */
- main {
+/* flex: in combination with flex-box of body, stretches the content to full height, setting max-width for main part of body, centered with help of margin */
+main {
     background-color: white;
     flex: 1;
- }
+}
  
- /* class to set status "hidden" */
+/* class to set status "hidden" */
 .hidden {
    display: none;
 }

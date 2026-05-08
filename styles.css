@@ -1,6 +1,6 @@
 /* Header */
 header {
-    height: 70px;
+    height: var(--height-header-footer);
     background-color: var(--header-footer-background-color);
     padding: 0 20px 0 20px;
     display: flex;
@@ -12,12 +12,12 @@ header {
     align-items: center;
 }
 .logo-img {
-    width: 60px;
-    height: 60px;
+    width: var(--width-height-logo-img);
+    height: var(--width-height-logo-img);
 }
 .logo-text {
     color: black;
-    font-size: 24px;
+    font-size: var(--font-size-logo-text);
     font-weight: bold;
 }
 input {
@@ -27,7 +27,7 @@ input {
 
 /* Footer */
 footer {
-    height: 70px;
+    height: --height-header-footer;
     background-color: var(--header-footer-background-color);
     padding: 0 20px 0 20px;
 }
@@ -41,7 +41,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--gap-between-gallery);
+    gap: var(--gap-24);
     flex-wrap: wrap;
     padding: 0 20px 0 20px;
 }
@@ -70,7 +70,7 @@ main {
 .type {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: var(--gap-20);
     text-transform: capitalize;
     padding-top: 5px;
 }
@@ -181,8 +181,7 @@ li {
 
 /* Focus */
 button:focus-visible,
-.close-icon:focus-visible,
-.fav-icon:focus-visible {
+.close-icon:focus-visible {
    outline: 3px solid var(--border-color-gallery-hover);
    outline-offset: 4px;
 }
@@ -239,7 +238,7 @@ dialog::backdrop {
     flex-direction: column;
     text-align: center;
     width: max-content;
-    gap: 5px;
+    gap: var(--gap-5);
 }
 .div-figure {
     display: flex;
@@ -275,7 +274,7 @@ button {
 .pokemon-menu button {
     width: 100px;
     height: 30px;
-    font-size: 12px;
+    font-size: var(--font-size-id);
     font-weight: bold;
     color: gray;
     text-transform: uppercase;
@@ -291,8 +290,8 @@ button {
     color: black !important;
 }
 .pokemon-data {
-    height: 220px;
-    font-size: 12px;
+    height: var(--height-table-stats-bar);
+    font-size: var(--font-size-id);
 }
 .change-pokemon {
     display: flex;
@@ -320,7 +319,7 @@ button {
     line-height: 15px;
     padding: 5px 0 5px 25px;
     background-color: white;
-    height: 220px;
+    height: var(--height-table-stats-bar);
     width: 100%;
     box-shadow: var(--box-shadow-shiny);
 }
@@ -339,7 +338,7 @@ button {
 .stats-bar {
     padding: 10px 30px 5px 30px;
     background-color: white;
-    height: 220px;
+    height: var(--height-table-stats-bar);
     box-shadow: var(--box-shadow-shiny);
     line-height: 1.5;
 }
@@ -349,7 +348,7 @@ button {
 .light-grey {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--gap-10);
     padding-bottom: 7px;
 }
 .light-grey span {
@@ -369,7 +368,7 @@ button {
     align-items: center;
     text-align: center;
     color: #fff;
-    font-size: 11px;
+    font-size: var(--font-size-container);
     font-weight: bold;
 }
 .stat-total {
@@ -392,7 +391,7 @@ button {
 .moves-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--gap-8);
     padding-right: 25px;
 }
 .title-move {

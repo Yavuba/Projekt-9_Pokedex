@@ -6,6 +6,7 @@ let pokeMainCache = {};
 let pokeSpeciesCache = {};
 let pokeEvoCache = {};
 let currentSpecies = null;
+let currentEvo = null;
 
 let currentIndex = 0;
 let modal = document.getElementById("modal");
@@ -17,18 +18,24 @@ async function init() {
     await getPokemonMainData();
 }
 
+// reusable fetch function // 
+async function fetchJson(url) {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Response status: ${response.status}`);
+  }
+
+  return await response.json();
+}
+
 // get all pokemon types of poke-api for defining classes//
 async function getAllPokemonTypesfromApi () {
-  const url = "https://pokeapi.co/api/v2/type/";
   try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
+    const data = await fetchJson("https://pokeapi.co/api/v2/type/");
 
-    const result = await response.json();
-    result.results.forEach(pokemon => {
-    pokeTypesArray.push(pokemon.name);
+    data.results.forEach(pokemon => {
+      pokeTypesArray.push(pokemon.name);
     });
 
   } catch (error) {
@@ -38,16 +45,11 @@ async function getAllPokemonTypesfromApi () {
 
 // get url-data for first 20 pokemon //
 async function getUrlData() {
-  const url = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
   try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    result.results.forEach(pokemon => {
-    pokeapiArray.push(pokemon.url);
+    const data = await fetchJson("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20");
+    
+    data.results.forEach(pokemon => {
+      pokeapiArray.push(pokemon.url);
     });
 
   } catch (error) {
@@ -62,13 +64,8 @@ async function getPokemonMainData() {
 
   for (const pokemonUrl of pokeapiArray) {
     try {
-        const response = await fetch(pokemonUrl);
+        const result = await fetchJson(pokemonUrl);
 
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        const result = await response.json();
         pokeMainCache[result.id] = result;
         renderPokemonList(result);
         
@@ -84,16 +81,10 @@ async function getSpeciesData(id) {
       return pokeSpeciesCache[id];
     }
 
-  const url = pokeMainCache[id].species.url;
-
   try {
-    const response = await fetch(url);
+    const url = pokeMainCache[id].species.url;
+    const data = await fetchJson(url);
 
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-
-    const data = await response.json();
     pokeSpeciesCache[id] = data;
     return data;
 
@@ -108,16 +99,10 @@ async function getEvoData(id) {
       return pokeEvoCache[id];
     }
 
-  const url = pokeSpeciesCache[id].evolution_chain.url;
-
   try {
-    const response = await fetch(url);
+    const url = pokeSpeciesCache[id].evolution_chain.url;
+    const data = await fetchJson(url);
 
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-
-    const data = await response.json();
     pokeEvoCache[id] = data;
     return data;
 
@@ -157,7 +142,6 @@ async function getDataModal(id) {
   renderData(id, 'about');
 }
 
-
 // closing modal //
 function closeModal() {
   modal.close();
@@ -193,7 +177,7 @@ function renderFiltered(direction) {
 }
 
 // function for rendering overlay //
-function renderData(id, type, species) {
+function renderData(id, type) {
   const contentRef = document.getElementById('menu-content-' + id)
   const data = pokeMainCache[id];
 
@@ -292,7 +276,15 @@ function getPercBst(total) {
 // functions for formatting/getting pokemon data - EVO CHAIN //
 
 function getEvoChain(evo) {
-  return pokeEvoCache[1].chain.evolves_to[0].evolves_to[0].species.name;
-  return pokeEvoCache[1].chain.evolves_to[0].species.name;
+  let evolutions = [];
+
+  
+
 }
+
+pokeEvoCache[1].chain.species.name;  
+pokeEvoCache[1].chain.evolves_to[0].species.name;
+pokeEvoCache[1].chain.evolves_to[0].evolves_to[0].species.name;
+
+
 
