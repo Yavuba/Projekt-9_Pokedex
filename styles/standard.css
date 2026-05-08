@@ -7,17 +7,24 @@
 /* background color */
 --header-footer-background-color: rgb(243,207,93);
 --main-background-color: rgb(115,206,165);
-
-/* font color */
---font-color-photo-name: rgba(255, 255, 255, 1);
+--box-shadow-shiny:
+                0 0 10px rgba(255, 255, 255, 0.6),
+                0 0 20px rgba(255, 255, 255, 0.4),
+                0 0 30px rgba(255, 255, 255, 0.2);
 
 /* font size */
---font-size-photo-name: 24px;
+--font-size-pokemon-name: 16px;
+--font-size-modal-name: 32px;
+--font-size-id: 12px;
+--font-size-modal-id: 24px;
 
-/* width, height of img, icons */
+/* width, height of img, icons, container */
 --width-height-pokemon-img: 120px;
+--width-height-modal-img: 180px;
 --width-height-close-icon: 35px;
---width-height-btn-arrow: 60px;
+--width-height-btn-arrow: 40px;
+--height-header-modal: 300px;
+--height-content-modal: 327px;
 
 --maxWidth: 1440px;
 
