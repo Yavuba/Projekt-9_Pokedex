@@ -147,10 +147,8 @@ function getEvoTemplate(result, evo) {
                 <div id="evo-chain-${result.id}">
                     ${renderEvolutionChain(evo.chain).map(name => `
                         <div class="class-evo">${name}</div>
+                        <img class="pokemon-evo-img" src="${getEvoImg(name)}" alt="pokemon-evo-img">
                     `).join("")}
-                </div>
-                <div>
-                    <img id="img-${result.id}" class="pokemon-img" src="${result.sprites.other["official-artwork"].front_default}" alt="pokemon-img">
                 </div>
             </div>
             `

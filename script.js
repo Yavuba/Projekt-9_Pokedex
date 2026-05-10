@@ -285,3 +285,11 @@ function renderEvolutionChain(chain, container = []) {
 
   return container;
 }
+
+function getEvoImg(name) {
+  const pokemon = Object.values(pokeMainCache).find(p => p.name === name);
+
+  if (!pokemon) return "";
+
+  return pokemon.sprites.other["official-artwork"].front_default;
+}
