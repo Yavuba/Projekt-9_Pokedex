@@ -27,7 +27,7 @@ input {
 
 /* Footer */
 footer {
-    height: --height-header-footer;
+    height: var(--height-header-footer);
     background-color: var(--header-footer-background-color);
     padding: 0 20px 0 20px;
 }
