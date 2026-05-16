@@ -37,10 +37,10 @@ function getModalTemplate(result) {
                 </section>
                 <section id="modal-content-${result.id}" class="content-modal" onclick="event.stopPropagation()">
                     <div id="pokemon-modal-menu-${result.id}" class="pokemon-menu">
-                        <button id="button-about-${result.id}" class="class-background" onclick="renderData(${result.id}, 'about'); getBackgroundBtn(${result.id}, this);">About</Button>
-                        <button id="button-stats-${result.id}" onclick="renderData(${result.id}, 'stats'); getBackgroundBtn(${result.id}, this);">Stats</Button>
-                        <button id="button-moves-${result.id}" onclick="renderData(${result.id}, 'moves'); getBackgroundBtn(${result.id}, this);">Moves</Button>
-                        <button id="button-evo-${result.id}" onclick="renderData(${result.id}, 'evo'); getBackgroundBtn(${result.id}, this);">Evo Chain</Button>
+                        <button id="button-about-${result.id}" class="class-background" onclick="handlePokemonChange(${result.id}, 'about', this)">About</Button>
+                        <button id="button-stats-${result.id}" onclick="handlePokemonChange(${result.id}, 'stats', this)">Stats</button>
+                        <button id="button-moves-${result.id}" onclick="handlePokemonChange(${result.id}, 'moves', this)">Moves</button>
+                        <button id="button-evo-${result.id}" onclick="handlePokemonChange(${result.id}, 'evo', this)">Evo Chain</button>
                     </div>
                     <div id="menu-content-${result.id}" class="pokemon-data">
 
@@ -146,8 +146,10 @@ function getEvoTemplate(result, evo) {
             <div class="container-evo">
                 <div id="evo-chain-${result.id}">
                     ${renderEvolutionChain(evo.chain).map(name => `
-                        <div class="class-evo">${name}</div>
-                        <img class="pokemon-evo-img" src="${getEvoImg(name)}" alt="pokemon-evo-img">
+                        <figure class="figure-evo">
+                            <figcaption class="title-evo">${name}</figcaption>
+                            <img class="pokemon-evo-img ${getEvoImg(name, result.id).shadow}" src="${getEvoImg(name, result.id).src}" alt="pokemon-evo-img">
+                        </figure>
                     `).join("")}
                 </div>
             </div>

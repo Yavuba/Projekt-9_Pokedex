@@ -10,6 +10,7 @@ let currentEvo = null;
 
 let currentIndex = 0;
 let modal = document.getElementById("modal");
+let currentSection = 'about';
 
 // init function for calling api-data //
 async function init() {
@@ -131,19 +132,48 @@ function getPokemonTypes(pokemon) {
 // get data and open modal // 
 async function getDataModal(id) {
   currentIndex = id;
+  document.body.classList.add('no-scroll');
   let contentRef = document.getElementById('modal');
   let data = pokeMainCache[id];
 
   contentRef.innerHTML = getModalTemplate(data);
   modal.showModal();
-
+  
   currentSpecies = await getSpeciesData(id);
   currentEvo = await getEvoData(id);
-  renderData(id, 'about');
+
+  checkModalWindow(id);
+}
+
+function checkModalWindow(id) {
+  const section = currentSection;
+  renderData(id, section);
+
+  const btn = document.getElementById(`button-${section}-${id}`);
+  getBackgroundBtn(id, btn);
+}
+
+// get class for formatting buttons background //
+function getBackgroundBtn(id, btn) {
+  const buttons = ['about', 'stats', 'moves', 'evo'];
+
+  buttons.forEach(name => { const element = document.getElementById(`button-${name}-${id}`);
+  element.classList.remove("class-background");});
+
+  btn.classList.add("class-background");
+}
+
+function handlePokemonChange(id, section, btn) {
+  currentSection = section;
+  renderData(id, section);
+
+  getBackgroundBtn(id, btn);
 }
 
 // closing modal //
 function closeModal() {
+  currentSection = 'about';
+  document.body.classList.remove('no-scroll');
   modal.close();
 }
 
@@ -189,17 +219,6 @@ function renderData(id, type) {
   };
   const template = templates[type];
   contentRef.innerHTML = template();
-}
-
-// get class for formatting buttons background //
-function getBackgroundBtn(id, btn) {
-  const buttons = ['about', 'stats', 'moves', 'evo'];
-
-  buttons.forEach(name => { const element = document.getElementById(`button-${name}-${id}`);
-  element.classList.remove("class-background");
-  });
-
-  btn.classList.add("class-background");
 }
 
 // functions for formatting/getting pokemon data - ABOUT //
@@ -286,10 +305,25 @@ function renderEvolutionChain(chain, container = []) {
   return container;
 }
 
-function getEvoImg(name) {
+function getEvoImg(name, id) {
   const pokemon = Object.values(pokeMainCache).find(p => p.name === name);
 
-  if (!pokemon) return "";
+  if (!pokemon) return { src: "", shadow: "" }
 
-  return pokemon.sprites.other["official-artwork"].front_default;
+  let evoImg = pokemon.sprites.other["official-artwork"].front_default;
+  let shadowClass = getShadow(evoImg, id);
+
+  return {
+    src: evoImg,
+    shadow: shadowClass
+  };
+}
+
+function getShadow(src, id) {
+  let modalImg = document.getElementById(`modal-img-${id}`);
+  
+  if (src === modalImg.src) {
+    return "shadow";
+  }
+  return "";
 }

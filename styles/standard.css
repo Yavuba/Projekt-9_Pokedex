@@ -48,7 +48,7 @@
 
 /* to fill in white space after clipping footer */
 html {
-    background-color: white;
+    background-color: var(--main-background-color);
 }
  
 /* for all elements */
@@ -73,11 +73,13 @@ body {
  
 /* flex: in combination with flex-box of body, stretches the content to full height, setting max-width for main part of body, centered with help of margin */
 main {
-    background-color: white;
+    background-color: var(--main-background-color);
+    padding: 20px 0 30px 0;
     flex: 1;
 }
- 
-/* class to set status "hidden" */
 .hidden {
    display: none;
+}
+.no-scroll {
+  overflow: hidden;
 }
