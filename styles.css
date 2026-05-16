@@ -34,6 +34,10 @@ input {
 
 /* Footer */
 footer {
+<<<<<<< HEAD
+=======
+    height: var(--height-header-footer);
+>>>>>>> 3cbb41f424028e2536785b17a604a604607df28c
     background-color: var(--header-footer-background-color);
     width: 100%;
     display: flex;
@@ -441,12 +445,3 @@ button {
     border-radius: 20px;
     box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.31);
 }
-
-
-
-
-   
-    
-
-
-
