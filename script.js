@@ -1,16 +1,18 @@
 // variables //
 let pokeapiArray = [];
 let pokeTypesArray = [];
+let currentPokemon = [];
 
 let pokeMainCache = {};
 let pokeSpeciesCache = {};
 let pokeEvoCache = {};
+
 let currentSpecies = null;
 let currentEvo = null;
-
 let currentIndex = 0;
-let modal = document.getElementById("modal");
 let currentSection = 'about';
+
+let modal = document.getElementById("modal");
 
 // init function for calling api-data //
 async function init() {
@@ -125,6 +127,22 @@ function getPokemonTypes(pokemon) {
       text += getPokemonTypesTemplate(pokemon, i);
   }
   return text;
+}
+
+// filter function in header //
+function filterAndShowCurrentPokemon(filterWord) {
+  if (filterWord.length < 3) {
+    document.getElementById('alert-text').innerHTML = 'Please enter at least 3 characters!';
+  
+  } else {
+  let contentRef = document.getElementById("content");
+  contentRef.innerHTML = "";
+
+  currentPokemon = Object.values(pokeMainCache).filter(pokemon =>
+  pokemon.name.toLowerCase().includes(filterWord.toLowerCase()));
+
+  currentPokemon.forEach(pokemon => {renderPokemonList(pokemon);});
+  }
 }
 
 // modal functions //

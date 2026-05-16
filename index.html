@@ -17,7 +17,13 @@
                 <img class="logo-img" src="./assets/img/header/pokeball-img.png" alt="logo-img">
                 <figcaption class="logo-text">Pokedex</figcaption>
             </figure>
-            <input></input>
+            <div id="search-filter" class="filter">
+                <div>
+                    <input type="text" id="input-text" class="search-pokemon" placeholder="search Pokemon..."></input>
+                    <input type="button" value="filter" class="btn" onclick="filterAndShowCurrentPokemon(document.getElementById('input-text').value)">
+                </div>
+                <span id="alert-text" class="alert"></span>
+            </div>
         </div>
     </header>
     <main>

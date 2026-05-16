@@ -27,9 +27,22 @@ header {
     font-size: var(--font-size-logo-text);
     font-weight: bold;
 }
-input {
-    height: 20px;
-    width: 100px;
+.search-pokemon {
+    height: 30px;
+    width: 200px;
+}
+.btn {
+    height: 30px;
+}
+.alert {
+    position: absolute;
+    background: white;
+    color: red;
+    border: 1px solid red;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 200px;
+    font-weight: bold;
 }
 
 /* Footer */
