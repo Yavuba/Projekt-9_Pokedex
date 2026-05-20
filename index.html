@@ -18,11 +18,11 @@
                 <figcaption class="logo-text">Pokedex</figcaption>
             </figure>
             <div id="search-filter" class="filter">
-                <div>
+                <span id="alert-text" class="alert hidden"></span>
+                <div class="search-container">
                     <input type="text" id="input-text" class="search-pokemon" placeholder="search Pokemon..."></input>
                     <input type="button" value="filter" class="btn" onclick="filterAndShowCurrentPokemon(document.getElementById('input-text').value)">
                 </div>
-                <span id="alert-text" class="alert"></span>
             </div>
         </div>
     </header>

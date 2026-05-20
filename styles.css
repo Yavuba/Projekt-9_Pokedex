@@ -30,19 +30,30 @@ header {
 .search-pokemon {
     height: 30px;
     width: 200px;
+    text-align: center;
+    font-style: italic;
 }
 .btn {
     height: 30px;
+    width: 80px;
+    font-weight: bold;
 }
 .alert {
-    position: absolute;
     background: white;
-    color: red;
+    color: black;
     border: 1px solid red;
-    border-radius: 6px;
+    background-color: rgb(255, 102, 102);
+    border-radius: 5px;
     font-size: 14px;
-    width: 200px;
+    width: 250px;
+    text-align: center;
     font-weight: bold;
+    height: 30px;
+}
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 /* Footer */

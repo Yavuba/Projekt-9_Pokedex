@@ -131,20 +131,29 @@ function getPokemonTypes(pokemon) {
 
 // filter function in header //
 function filterAndShowCurrentPokemon(filterWord) {
-  if (filterWord.length < 3) {
-    document.getElementById('alert-text').innerHTML = 'Please enter at least 3 characters!';
+  let contentRefAlert = document.getElementById('alert-text');
+  let contentRef = document.getElementById("content");
+  
+  if (filterWord.length < 3 && filterWord.length > 0) {
+  contentRefAlert.classList.remove('hidden');
+  document.getElementById('alert-text').innerHTML = 'Please enter at least 3 characters!';
   
   } else {
-  let contentRef = document.getElementById("content");
+  contentRefAlert.classList.add('hidden');
   contentRef.innerHTML = "";
 
   currentPokemon = Object.values(pokeMainCache).filter(pokemon =>
   pokemon.name.toLowerCase().includes(filterWord.toLowerCase()));
-
   currentPokemon.forEach(pokemon => {renderPokemonList(pokemon);});
+  checkFilteredPokemon(currentPokemon.length);
   }
 }
 
+function checkFilteredPokemon(pokemon) {
+  if (pokemon === 0) {
+    document.getElementById('content').innerHTML = 'No matching Pokémon found.'
+  }
+}
 // modal functions //
 
 // get data and open modal // 

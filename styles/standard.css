@@ -57,7 +57,7 @@ html {
     margin: 0;
     list-style: none;
     text-decoration: none;
-    /* outline: 1px solid red; */
+    outline: 1px solid red;
 }
  
 /* set sticky footer to the bottom, main part centered and vertically stacked */
