@@ -17,7 +17,7 @@ let modal = document.getElementById("modal");
 // init function for calling api-data //
 async function init() {
     await getAllPokemonTypesfromApi();  
-    await getUrlData();
+    await getUrlData("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20");
     await getPokemonMainData();
 }
 
@@ -47,10 +47,10 @@ async function getAllPokemonTypesfromApi () {
 }
 
 // get url-data for first 20 pokemon //
-async function getUrlData() {
+async function getUrlData(url) {
   try {
-    const data = await fetchJson("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20");
-    
+    const data = await fetchJson(url);
+  
     data.results.forEach(pokemon => {
       pokeapiArray.push(pokemon.url);
     });
@@ -65,17 +65,41 @@ async function getPokemonMainData() {
   let contentRef = document.getElementById('content');
   contentRef.innerHTML = "";
 
-  for (const pokemonUrl of pokeapiArray) {
-    try {
-        const result = await fetchJson(pokemonUrl);
+  showLoadingSpinner();
 
-        pokeMainCache[result.id] = result;
-        renderPokemonList(result);
-        
-    } catch (error) {
-      console.error(error.message);
+  try {
+    for (const pokemonUrl of pokeapiArray) {
+      const result = await fetchJson(pokemonUrl);
+
+      pokeMainCache[result.id] = result;
+      renderPokemonList(result);
     }
+
+  } catch (error) {
+    console.error(error.message);
+
+  } finally {
+    hideLoadingSpinner();
   }
+}
+
+// functions for loading spinner //
+function showLoadingSpinner() {
+  const spinner = document.getElementById('spinner');
+  spinner.style.display = "flex";
+
+  document.body.classList.add('no-scroll');
+  document.querySelector('main').classList.add('blurred');
+}
+
+function hideLoadingSpinner() {
+  setTimeout(() => {
+    const spinner = document.getElementById('spinner');
+    spinner.style.display = "none";
+
+    document.body.classList.remove('no-scroll');
+    document.querySelector('main').classList.remove('blurred');
+  }, 2000);
 }
 
 // fetch data for species //
@@ -129,6 +153,33 @@ function getPokemonTypes(pokemon) {
   return text;
 }
 
+// loading next 20 pokemon via button "Add more pokemon" //
+async function loadMorePokemon() {
+  showLoadingSpinner();
+
+  let offset = pokeapiArray.length;
+  let newUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`;
+  
+  try {
+    const data = await fetchJson(newUrl);
+
+    for (const pokemon of data.results) {
+      pokeapiArray.push(pokemon.url);
+
+      const result = await fetchJson(pokemon.url);
+
+      pokeMainCache[result.id] = result;
+      renderPokemonList(result);
+    }
+
+  } catch (error) {
+    console.error(error.message);
+
+  } finally {
+    hideLoadingSpinner();
+  }
+}
+
 // filter function in header //
 function filterAndShowCurrentPokemon(filterWord) {
   let contentRefAlert = document.getElementById('alert-text');
@@ -145,6 +196,7 @@ function filterAndShowCurrentPokemon(filterWord) {
   currentPokemon = Object.values(pokeMainCache).filter(pokemon =>
   pokemon.name.toLowerCase().includes(filterWord.toLowerCase()));
   currentPokemon.forEach(pokemon => {renderPokemonList(pokemon);});
+
   checkFilteredPokemon(currentPokemon.length);
   }
 }

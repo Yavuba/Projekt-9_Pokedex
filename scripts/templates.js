@@ -37,7 +37,7 @@ function getModalTemplate(result) {
                 </section>
                 <section id="modal-content-${result.id}" class="content-modal" onclick="event.stopPropagation()">
                     <div id="pokemon-modal-menu-${result.id}" class="pokemon-menu">
-                        <button id="button-about-${result.id}" class="class-background" onclick="handlePokemonChange(${result.id}, 'about', this)">About</Button>
+                        <button id="button-about-${result.id}" class="class-background" onclick="handlePokemonChange(${result.id}, 'about', this)">About</button>
                         <button id="button-stats-${result.id}" onclick="handlePokemonChange(${result.id}, 'stats', this)">Stats</button>
                         <button id="button-moves-${result.id}" onclick="handlePokemonChange(${result.id}, 'moves', this)">Moves</button>
                         <button id="button-evo-${result.id}" onclick="handlePokemonChange(${result.id}, 'evo', this)">Evo Chain</button>
