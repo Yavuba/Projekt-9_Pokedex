@@ -29,9 +29,11 @@
     <main>
         <article id="content" class="content-row"></article>
         <div class="loading-data">
+            <div id="spinner" class="spinner-wrapper">
+                <div class="spinner"></div>
+            </div>
             <button class="loading-pokemon" onclick="loadMorePokemon()">Add more pokemon</button>
         </div>
-        <div id="spinner" class="spinner-wrapper"><div class="spinner"></div></div>
         <dialog id="modal" tabindex="0" aria-labelledby="caption" onclick="closeModal()" onkeydown="modalKeys(event)"></dialog>
     </main>
     <footer>

@@ -99,7 +99,7 @@ function hideLoadingSpinner() {
 
     document.body.classList.remove('no-scroll');
     document.querySelector('main').classList.remove('blurred');
-  }, 2000);
+  }, 1000);
 }
 
 // fetch data for species //
@@ -156,7 +156,6 @@ function getPokemonTypes(pokemon) {
 // loading next 20 pokemon via button "Add more pokemon" //
 async function loadMorePokemon() {
   showLoadingSpinner();
-
   let offset = pokeapiArray.length;
   let newUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`;
   
@@ -165,7 +164,6 @@ async function loadMorePokemon() {
 
     for (const pokemon of data.results) {
       pokeapiArray.push(pokemon.url);
-
       const result = await fetchJson(pokemon.url);
 
       pokeMainCache[result.id] = result;
@@ -177,6 +175,11 @@ async function loadMorePokemon() {
 
   } finally {
     hideLoadingSpinner();
+    
+    document.getElementById('content').scrollIntoView({
+      behavior: "smooth",
+      block: "end"
+    });
   }
 }
 

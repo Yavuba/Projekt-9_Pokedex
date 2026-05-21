@@ -1,20 +1,25 @@
 .spinner-wrapper {
     display: none;
+
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(3px);
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 20px;
-    z-index: 1000;
+    align-items: end;
+    padding-bottom: 25%;
+
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(3px);
+    z-index: 99999;
 }
+
 .spinner {
     width: 250px;
     height: 250px;
+    
     border: 5px solid lightgray;
     border-top: 5px solid red;
     border-radius: 50%;
+
     background-image: url(../assets/img/header/pokeball-img.png);
     background-repeat: no-repeat;
     background-position: center;
