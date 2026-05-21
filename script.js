@@ -102,6 +102,17 @@ function hideLoadingSpinner() {
   }, 1000);
 }
 
+function moveSpinner() {
+  const spinner = document.getElementById('spinner');
+  spinner.classList.add('move-spinner');
+  
+  document.getElementById('content').scrollIntoView
+    ({
+    behavior: "smooth",
+    block: "end"
+    });
+}
+
 // fetch data for species //
 async function getSpeciesData(id) {
   if (pokeSpeciesCache[id]) {
@@ -175,11 +186,7 @@ async function loadMorePokemon() {
 
   } finally {
     hideLoadingSpinner();
-    
-    document.getElementById('content').scrollIntoView({
-      behavior: "smooth",
-      block: "end"
-    });
+    moveSpinner();
   }
 }
 

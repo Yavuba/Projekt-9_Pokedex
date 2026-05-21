@@ -4,14 +4,16 @@
     position: fixed;
     inset: 0;
     justify-content: center;
-    align-items: end;
-    padding-bottom: 25%;
+    align-items: center;
 
     background: rgba(0,0,0,0.3);
     backdrop-filter: blur(3px);
     z-index: 99999;
 }
-
+.move-spinner {
+    align-items: end;
+    padding-bottom: 25%;
+}
 .spinner {
     width: 250px;
     height: 250px;
