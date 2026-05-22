@@ -1,13 +1,11 @@
 /* styling loading spinner */
 .spinner-wrapper {
     display: none;
-
     position: fixed;
     inset: 0;
     justify-content: center;
     align-items: start;
     padding-top: 140px;
-
     background: rgba(0,0,0,0.3);
     backdrop-filter: blur(3px);
     z-index: 99999;
@@ -19,11 +17,9 @@
 .spinner {
     width: 250px;
     height: 250px;
-    
     border: 5px solid lightgray;
     border-top: 5px solid red;
     border-radius: 50%;
-
     background-image: url(../assets/img/header/pokeball-img.png);
     background-repeat: no-repeat;
     background-position: center;

@@ -140,34 +140,17 @@ function getMovesTemplate(result) {
 }
 
 // rendering template for "Evo Chain" Data //
-async function getEvoTemplate(result, evo) {
-    const evolutions = renderEvolutionChain(evo.chain);
-  
-    let html = `
-      <div class="container-evo">
-        <div id="evo-chain-${result.id}" class="evo-chain">
-    `;
-  
-    for (const name of evolutions) {
-      const evoImg = await getEvoImg(name, result.id);
-  
-      html += `
-        <figure class="figure-evo">
-          <figcaption class="title-evo">${name}</figcaption>
-  
-          <img
-            class="pokemon-evo-img ${evoImg.shadow}"
-            src="${evoImg.src}"
-            alt="pokemon-evo-img"
-          >
-        </figure>
-      `;
-    }
-  
-    html += `
-        </div>
-      </div>
-    `;
-  
-    return html;
+function getEvoTemplate(result, evoData) {
+    return `
+            <div class="container-evo">
+                <div id="evo-chain-${result.id}" class="evo-chain">
+                ${evoData.map(evo => `
+                    <figure class="figure-evo">
+                        <figcaption class="title-evo">${evo.name}</figcaption>
+                        <img class="pokemon-evo-img ${evo.shadow}" src="${evo.src}" alt="pokemon-evo-img">
+                    </figure>
+                `).join("")}
+                </div>
+            </div>
+            `;
   }

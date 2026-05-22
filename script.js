@@ -150,6 +150,22 @@ async function getEvoData(id) {
   }
 }
 
+async function getEvolutionData(evoChain, resultId) {
+  const evolutions = renderEvolutionChain(evoChain);
+
+  const evoData = await Promise.all(
+    evolutions.map(async (name) => { const evoImg = await getEvoImg(name, resultId);
+      return {
+        name,
+        src: evoImg.src,
+        shadow: evoImg.shadow
+      };
+    })
+  );
+
+  return evoData;
+}
+
 // render-function to create pokemon-list in HTML //
 function renderPokemonList(result) {
     let contentRef = document.getElementById('content');
@@ -287,14 +303,12 @@ function modalKeys(event) {
 
 // change modal-window, prev or next (1 or -1) //
 function renderFiltered(direction) {
+
   const loadedIds = pokeapiArray.map(url => {
-    return Number(
-      url.split("/").filter(Boolean).pop()
-    );
+    return Number(url.split("/").filter(Boolean).pop());
   });
 
   let currentPosition = loadedIds.indexOf(currentIndex);
-
   currentPosition += direction;
 
   if (currentPosition < 0) {
@@ -306,7 +320,6 @@ function renderFiltered(direction) {
   }
 
   currentIndex = loadedIds[currentPosition];
-
   getDataModal(currentIndex);
 }
 
@@ -319,11 +332,13 @@ async function renderData(id, type) {
     about: async () => getAboutTemplate(data, currentSpecies),
     stats: async () => getStatsTemplate(data),
     moves: async () => getMovesTemplate(data),
-    evo: async () => await getEvoTemplate(data, currentEvo)
+    evo: async () => {
+      const evoData = await getEvolutionData(currentEvo.chain, data.id);
+      return getEvoTemplate(data, evoData);
+    }
   };
 
   const template = templates[type];
-
   contentRef.innerHTML = await template();
 }
 
