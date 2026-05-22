@@ -246,6 +246,7 @@ async function getDataModal(id) {
 
   contentRef.innerHTML = getModalTemplate(data);
   modal.showModal();
+  modal.focus();
   
   currentSpecies = await getSpeciesData(id);
   currentEvo = await getEvoData(id);
