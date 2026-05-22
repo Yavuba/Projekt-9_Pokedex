@@ -17,8 +17,7 @@ function getPokemonListTemplate(result) {
 // rendering pokemon types //
 function getPokemonTypesTemplate(pokemon, index) {
     return `
-            <li id="type-${pokemon.id}-${index}" class="${pokemon.types[index].type.name}">${pokemon.types[index].type.name}
-            </li>
+            <li id="type-${pokemon.id}-${index}" class="${pokemon.types[index].type.name}">${pokemon.types[index].type.name}</li>
             `
 }
 
@@ -141,17 +140,34 @@ function getMovesTemplate(result) {
 }
 
 // rendering template for "Evo Chain" Data //
-function getEvoTemplate(result, evo) {
-    return `
-            <div class="container-evo">
-                <div id="evo-chain-${result.id}">
-                    ${renderEvolutionChain(evo.chain).map(name => `
-                        <figure class="figure-evo">
-                            <figcaption class="title-evo">${name}</figcaption>
-                            <img class="pokemon-evo-img ${getEvoImg(name, result.id).shadow}" src="${getEvoImg(name, result.id).src}" alt="pokemon-evo-img">
-                        </figure>
-                    `).join("")}
-                </div>
-            </div>
-            `
-}
+async function getEvoTemplate(result, evo) {
+    const evolutions = renderEvolutionChain(evo.chain);
+  
+    let html = `
+      <div class="container-evo">
+        <div id="evo-chain-${result.id}" class="evo-chain">
+    `;
+  
+    for (const name of evolutions) {
+      const evoImg = await getEvoImg(name, result.id);
+  
+      html += `
+        <figure class="figure-evo">
+          <figcaption class="title-evo">${name}</figcaption>
+  
+          <img
+            class="pokemon-evo-img ${evoImg.shadow}"
+            src="${evoImg.src}"
+            alt="pokemon-evo-img"
+          >
+        </figure>
+      `;
+    }
+  
+    html += `
+        </div>
+      </div>
+    `;
+  
+    return html;
+  }

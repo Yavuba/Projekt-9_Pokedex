@@ -46,7 +46,7 @@ async function getAllPokemonTypesfromApi () {
   }
 }
 
-// get url-data for first 20 pokemon //
+// get url-data for loading pokemon //
 async function getUrlData(url) {
   try {
     const data = await fetchJson(url);
@@ -93,19 +93,20 @@ function showLoadingSpinner() {
 }
 
 function hideLoadingSpinner() {
-  setTimeout(() => {
     const spinner = document.getElementById('spinner');
     spinner.style.display = "none";
 
     document.body.classList.remove('no-scroll');
     document.querySelector('main').classList.remove('blurred');
-  }, 1000);
 }
 
 function moveSpinner() {
   const spinner = document.getElementById('spinner');
   spinner.classList.add('move-spinner');
   
+  let filterText = document.getElementById('input-text');
+  filterText.value = "";
+
   document.getElementById('content').scrollIntoView
     ({
     behavior: "smooth",
@@ -166,7 +167,9 @@ function getPokemonTypes(pokemon) {
 
 // loading next 20 pokemon via button "Add more pokemon" //
 async function loadMorePokemon() {
+  filterAndShowCurrentPokemon(""); 
   showLoadingSpinner();
+
   let offset = pokeapiArray.length;
   let newUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`;
   
@@ -231,12 +234,13 @@ async function getDataModal(id) {
   currentSpecies = await getSpeciesData(id);
   currentEvo = await getEvoData(id);
 
-  checkModalWindow(id);
+  await checkModalWindow(id);
 }
 
-function checkModalWindow(id) {
+async function checkModalWindow(id) {
   const section = currentSection;
-  renderData(id, section);
+
+  await renderData(id, section);
 
   const btn = document.getElementById(`button-${section}-${id}`);
   getBackgroundBtn(id, btn);
@@ -252,9 +256,10 @@ function getBackgroundBtn(id, btn) {
   btn.classList.add("class-background");
 }
 
-function handlePokemonChange(id, section, btn) {
+async function handlePokemonChange(id, section, btn) {
   currentSection = section;
-  renderData(id, section);
+
+  await renderData(id, section);
 
   getBackgroundBtn(id, btn);
 }
@@ -282,32 +287,44 @@ function modalKeys(event) {
 
 // change modal-window, prev or next (1 or -1) //
 function renderFiltered(direction) {
-  currentIndex += direction;
-  const total = Object.keys(pokeMainCache).length
+  const loadedIds = pokeapiArray.map(url => {
+    return Number(
+      url.split("/").filter(Boolean).pop()
+    );
+  });
 
-  if (currentIndex < 1) {
-      currentIndex = total;
+  let currentPosition = loadedIds.indexOf(currentIndex);
+
+  currentPosition += direction;
+
+  if (currentPosition < 0) {
+    currentPosition = loadedIds.length - 1;
   }
 
-  if (currentIndex > total) {
-      currentIndex = 1;
+  if (currentPosition >= loadedIds.length) {
+    currentPosition = 0;
   }
+
+  currentIndex = loadedIds[currentPosition];
+
   getDataModal(currentIndex);
 }
 
 // function for rendering overlay //
-function renderData(id, type) {
-  const contentRef = document.getElementById('menu-content-' + id)
+async function renderData(id, type) {
+  const contentRef = document.getElementById('menu-content-' + id);
   const data = pokeMainCache[id];
 
   const templates = {
-    about: () => getAboutTemplate(data, currentSpecies),
-    stats: () => getStatsTemplate(data),
-    moves: () => getMovesTemplate(data),
-    evo: () => getEvoTemplate(data, currentEvo)
+    about: async () => getAboutTemplate(data, currentSpecies),
+    stats: async () => getStatsTemplate(data),
+    moves: async () => getMovesTemplate(data),
+    evo: async () => await getEvoTemplate(data, currentEvo)
   };
+
   const template = templates[type];
-  contentRef.innerHTML = template();
+
+  contentRef.innerHTML = await template();
 }
 
 // functions for formatting/getting pokemon data - ABOUT //
@@ -382,6 +399,22 @@ function getPercBst(total) {
 }
 
 // functions for getting pokemon data - EVO CHAIN //
+
+async function getPokemonByName(name) {
+  const cached = Object.values(pokeMainCache)
+    .find(pokemon => pokemon.name === name);
+
+  if (cached) {
+    return cached;
+  }
+  const data = await fetchJson(
+    `https://pokeapi.co/api/v2/pokemon/${name}`
+  );
+
+  pokeMainCache[data.id] = data;
+  return data;
+}
+
 function renderEvolutionChain(chain, container = []) {
   if (!chain) return container;
 
@@ -394,13 +427,15 @@ function renderEvolutionChain(chain, container = []) {
   return container;
 }
 
-function getEvoImg(name, id) {
-  const pokemon = Object.values(pokeMainCache).find(p => p.name === name);
+async function getEvoImg(name, id) {
+  const pokemon = await getPokemonByName(name);
 
-  if (!pokemon) return { src: "", shadow: "" }
+  if (!pokemon) {
+    return { src: "", shadow: "" };
+  }
 
-  let evoImg = pokemon.sprites.other["official-artwork"].front_default;
-  let shadowClass = getShadow(evoImg, id);
+  const evoImg = pokemon.sprites.other["official-artwork"].front_default;
+  const shadowClass = getShadow(evoImg, id);
 
   return {
     src: evoImg,
