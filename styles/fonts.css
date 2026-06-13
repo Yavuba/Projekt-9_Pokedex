@@ -47,3 +47,9 @@
     font-weight: 700;
     font-style: normal;
     }
+
+    * {
+        font-family: "Palanquin", sans-serif;
+        font-size: 16px;
+    }
+

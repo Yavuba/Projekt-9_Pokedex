@@ -22,18 +22,17 @@ header {
     width: var(--width-height-logo-img);
     height: var(--width-height-logo-img);
 }
-.logo-text {
+h1 {
     color: black;
-    font-size: var(--font-size-logo-text);
+    font-size: var(--font-size-h1);
     font-weight: bold;
 }
 .search-pokemon {
-    height: 30px;
+    height: 35px;
     width: 200px;
     text-align: left;
 }
 .btn {
-    height: 30px;
     width: 80px;
     font-weight: bold;
 }
@@ -43,13 +42,12 @@ header {
     border: 1px solid red;
     background-color: rgb(255, 102, 102);
     border-radius: 5px;
-    font-size: 10px;
-    width: 100px;
+    font-size: 16px;
+    width: fit-content;
     text-align: center;
+    padding: 3px;
     font-weight: bold;
-    height: 30px;
-    line-height: 1.1;
-    padding-top: 2px;
+    height: 35px;
 }
 .filter {
     display: flex;
@@ -79,7 +77,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--gap-24);
+    gap: 24px;
     flex-wrap: wrap;
     padding: 0 20px 0 20px;
     margin: 0 auto;
@@ -98,7 +96,9 @@ footer {
 .id {
     color: white;
     text-align: center;
-    font-size: var(--font-size-id);
+    font-size: var(--font-size-mobile);
+    padding-top: 2px;
+    line-height: 0;
 }
 .name {
     font-size: var(--font-size-pokemon-name);
@@ -106,19 +106,20 @@ footer {
     text-align: center;
     font-weight: bold;
     text-transform: capitalize;
+    padding-top: 2px;
 }
 .type {
     display: flex;
     justify-content: center;
-    gap: var(--gap-20);
+    gap: 20px;
     text-transform: capitalize;
-    padding-top: 5px;
+    font-size: var(--font-size-mobile);
 }
 .section-pokemon {
     border-radius: 20px;
     padding: 5px;
     width: 150px;
-    height: 200px;
+    height: 210px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: 
@@ -216,7 +217,7 @@ dialog::backdrop {
     flex-direction: column;
     text-align: center;
     width: max-content;
-    gap: var(--gap-5);
+    gap: 5px;
 }
 .div-figure {
     display: flex;
@@ -252,10 +253,9 @@ button {
 .pokemon-menu button {
     width: 100px;
     height: 30px;
-    font-size: var(--font-size-id);
+    font-size: var(--font-size-mobile);
     font-weight: bold;
     color: gray;
-    text-transform: uppercase;
     border-radius: 20px;
 }
 .pokemon-menu button:hover {
@@ -269,7 +269,7 @@ button {
 }
 .pokemon-data {
     height: var(--height-table-stats-bar);
-    font-size: var(--font-size-id);
+    font-size: var(--font-size-mobile);
 }
 .change-pokemon {
     display: flex;
@@ -325,8 +325,7 @@ button {
 }
 .light-grey {
     display: flex;
-    align-items: center;
-    gap: var(--gap-10);
+    gap: 10px;
     padding-bottom: 7px;
 }
 .light-grey span {
@@ -334,8 +333,8 @@ button {
     text-transform: capitalize;
 }
 .bar-wrapper {
-    width: 200px;
-    height: 10px;
+    width: 150px;
+    height: 20px;
     background-color: #ddd;
     border-radius: 10px;
     overflow: hidden;
@@ -369,7 +368,7 @@ button {
 .moves-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--gap-8);
+    gap: 8px;
     padding-right: 25px;
 }
 .title-move {
@@ -425,6 +424,7 @@ button {
     font-weight: bold;
     background-color: gray;
     border-radius: 20px;
+    margin-top: 30px;
 }
 .loading-pokemon:hover {
     box-shadow: var(--box-shadow-shiny);
@@ -445,18 +445,13 @@ button {
     }
     .search-pokemon,
     .btn {
-        width: 110px;
-        height: 20px;
-        font-size: 10px;
+        width: 150px;
     }
     .header-section {
         padding: 0 20px 0 0px;
     }
     .content-row {
-            padding: 10px 20px 0 20px;
-    }
-    .logo-text {
-        font-size: 20px;
+        padding: 10px 20px 0 20px;
     }
     .footer-section {
         font-size: 14px;
@@ -476,14 +471,12 @@ button {
     .btn {
         width: 80px;
         height: 20px;
-        font-size: 9px;
     }
     .header-section {
         padding: 0 10px 0 0;
     }
     .alert {
-        font-size: 8px;
-        width: 90px;
+        width: 100px;
         height: 25px;
         line-height: 1.2;
         padding-top: 2px;
@@ -498,8 +491,5 @@ button {
     }
     .evo-chain {
         grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-    }
-    .pokemon-data {
-        font-size: 11px;
     }
 }

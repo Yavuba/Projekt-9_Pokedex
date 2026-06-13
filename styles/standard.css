@@ -13,35 +13,29 @@
                 0 0 30px rgba(255, 255, 255, 0.2);
 
 /* font size */
---font-size-container: 10px;
---font-size-id: 11px;
+--font-size-container: 14px;
+--font-size-mobile: 14px;
 --font-size-pokemon-name: 16px;
 --font-size-modal-id: 24px;
---font-size-logo-text: 24px;
+--font-size-h1: 24px;
 --font-size-modal-name: 32px;
 
 /* width, height of img, icons, container */
 --width-height-close-icon: 35px;
 --width-height-btn-arrow: 40px;
 --width-height-logo-img: 60px;
---height-header-footer: 70px;
+--height-header-footer: 90px;
+
 --width-height-pokemon-img: 120px;
 --width-height-modal-img: 180px;
 --height-table-stats-bar: 220px;
 --height-header-modal: 300px;
 --height-content-modal: 335px;
---maxWidth: 1440px;
 
-/* padding, gaps */
---gap-5: 5px;
---gap-8: 8px;
---gap-10: 10px;
---gap-20: 20px;
---gap-24: 24px;
+--maxWidth: 1440px;
 
 /* border or hover color*/
 --border-color-gallery-hover: rgba(18, 70, 88, 1);
-
 }
 
 /* Main style */
@@ -49,6 +43,7 @@
 /* to fill in white space after clipping footer */
 html {
     background-color: var(--main-background-color);
+
 }
  
 /* for all elements */
@@ -65,9 +60,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     min-height: 100vh;
+    min-height: 100dvh;
     margin: 0 auto;
-    font-family: "Palanquin", sans-serif;
     scroll-behavior: smooth;
 }
  
