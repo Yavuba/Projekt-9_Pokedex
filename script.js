@@ -62,7 +62,7 @@ async function getUrlData(url) {
 
 // get Pokemon main-data //
 async function getPokemonMainData() {
-  let contentRef = document.getElementById('content');
+  let contentRef = document.getElementById('pokemon-content');
   contentRef.innerHTML = "";
 
   showLoadingSpinner();
@@ -104,10 +104,10 @@ function moveSpinner() {
   const spinner = document.getElementById('spinner');
   spinner.classList.add('move-spinner');
   
-  let filterText = document.getElementById('input-text');
+  let filterText = document.getElementById('search-input');
   filterText.value = "";
 
-  document.getElementById('content').scrollIntoView
+  document.getElementById('pokemon-content').scrollIntoView
     ({
     behavior: "smooth",
     block: "end"
@@ -168,7 +168,7 @@ async function getEvolutionData(evoChain, resultId) {
 
 // render-function to create pokemon-list in HTML //
 function renderPokemonList(result) {
-    let contentRef = document.getElementById('content');
+    let contentRef = document.getElementById('pokemon-content');
     contentRef.innerHTML += getPokemonListTemplate(result);
 }
 
@@ -212,7 +212,7 @@ async function loadMorePokemon() {
 // filter function in header //
 function filterAndShowCurrentPokemon(filterWord) {
   let contentRefAlert = document.getElementById('alert-text');
-  let contentRef = document.getElementById("content");
+  let contentRef = document.getElementById("pokemon-content");
   
   if (filterWord.length < 3 && filterWord.length > 0) {
   contentRefAlert.classList.remove('hidden');
@@ -232,7 +232,7 @@ function filterAndShowCurrentPokemon(filterWord) {
 
 function checkFilteredPokemon(pokemon) {
   if (pokemon === 0) {
-    document.getElementById('content').innerHTML = 'No matching Pokémon found.'
+    document.getElementById('pokemon-content').innerHTML = 'No matching Pokémon found.'
   }
 }
 // modal functions //

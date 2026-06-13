@@ -1,10 +1,10 @@
 // creating list of pokemons in main //
 function getPokemonListTemplate(result) {
     return `
-            <button id="pokemon-${result.id}" class="${result.types[0].type.name} section-pokemon" onclick="getDataModal(${result.id})">
+            <button data-id="card-${result.id}" id="pokemon-${result.id}" class="${result.types[0].type.name} section-pokemon" onclick="getDataModal(${result.id})">
                 <div id="card-layout-${result.id}" class="layout-card">
                     <figure id="figure-${result.id}">
-                        <img id="img-${result.id}" class="pokemon-img" src="${result.sprites.other["official-artwork"].front_default}" alt="pokemon-img">
+                        <img data-id="card-image-${result.id}" id="img-${result.id}" class="pokemon-img" src="${result.sprites.other["official-artwork"].front_default}" alt="pokemon-img">
                         <figcaption id="id-${result.id}" class="id">#${result.id}</figcaption>
                         <figcaption id="name-${result.id}" class="name">${result.name}</figcaption>
                     </figure>
@@ -24,14 +24,14 @@ function getPokemonTypesTemplate(pokemon, index) {
 // rendering modal-window for each pokemon //
 function getModalTemplate(result) {
     return `
-            <div id="modal-pokemon-${result.id}" class="modal-class ${result.types[0].type.name}">
+            <div data-id="overlay-pokemon-name-${result.id}" id="modal-pokemon-${result.id}" class="modal-class ${result.types[0].type.name}">
                 <section id="header-modal-${result.id}" class="header-modal" onclick="event.stopPropagation()"> 
-                    <button id="close-button-icon-${result.id}" class="close-icon" aria-label="closing dialog" onclick="closeModal()"></button>
+                    <button data-id="close-dialog-button-${result.id}" id="close-button-icon-${result.id}" class="close-icon" aria-label="closing dialog" onclick="closeModal()"></button>
                     <h2 id="caption-pokemon-${result.id}" class="name name-modal">${result.name}</h2>
                     <span id="modal-id-${result.id}" class="id id-modal">#${result.id}</span>
                     <figure id="figure-modal-${result.id}" class="div-figure">
                         <figcaption id="type-modal-${result.id}" class="type type-modal">${getPokemonTypes(result)}</figcaption>
-                        <img id="modal-img-${result.id}" class="pokemon-img modal-img" src="${result.sprites.other["official-artwork"].front_default}" alt="pokemon-img" onclick="event.stopPropagation()">
+                        <img data-id="dialog-image-${result.id}" id="modal-img-${result.id}" class="pokemon-img modal-img" src="${result.sprites.other["official-artwork"].front_default}" alt="pokemon-img" onclick="event.stopPropagation()">
                     </figure>
                 </section>
                 <section id="modal-content-${result.id}" class="content-modal" onclick="event.stopPropagation()">
@@ -45,8 +45,8 @@ function getModalTemplate(result) {
 
                     </div>
                     <div id="change-pokemon-${result.id}" class="change-pokemon">
-                        <button id="prev-${result.id}" class="left" aria-label="go to previous gallery picture" onclick="renderFiltered(-1)"></button> 
-                        <button id="next-${result.id}" class="right" aria-label="go to next gallery picture" onclick="renderFiltered(1)"></button>
+                        <button data-id="prev-button-${result.id}" id="prev-${result.id}" class="left" aria-label="go to previous gallery picture" onclick="renderFiltered(-1)"></button> 
+                        <button data-id="next-button-${result.id}" id="next-${result.id}" class="right" aria-label="go to next gallery picture" onclick="renderFiltered(1)"></button>
                     </div>
                 </section>
             </div>

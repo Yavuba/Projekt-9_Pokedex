@@ -19,24 +19,24 @@
             </figure>
             <div id="search-filter" class="filter">
                 <span id="alert-text" class="alert hidden"></span>
-                <form onsubmit="filterAndShowCurrentPokemon(document.getElementById('input-text').value); return false;">
+                <form onsubmit="filterAndShowCurrentPokemon(document.getElementById('search-input').value); return false;">
                     <div class="search-container">
-                        <input type="text" id="input-text" class="search-pokemon" placeholder="search Pokemon...">
-                        <input type="submit" value="filter" class="btn">
+                        <input type="text" data-id="search-input" id="search-input" class="search-pokemon" placeholder="search Pokemon...">
+                        <input data-id="search-button" type="submit" value="filter" class="btn">
                     </div>
                 </form>
             </div>
         </div>
     </header>
-    <main>
-        <article id="content" class="content-row"></article>
+    <main data-id="content">
+        <article id="pokemon-content" class="content-row"></article>
         <div class="loading-data">
             <div id="spinner" class="spinner-wrapper">
                 <div class="spinner"></div>
             </div>
-            <button class="loading-pokemon" onclick="loadMorePokemon()">Add more pokemon</button>
+            <button data-id="load-more-button" class="loading-pokemon" onclick="loadMorePokemon()">Add more pokemon</button>
         </div>
-        <dialog id="modal" tabindex="0" aria-labelledby="caption" onclick="closeModal()" onkeydown="modalKeys(event)"></dialog>
+        <dialog data-id="dialog" id="modal" tabindex="0" aria-labelledby="caption" onclick="closeModal()" onkeydown="modalKeys(event)"></dialog>
     </main>
     <footer>
         <div class="footer-section">© Pokedex</div>
